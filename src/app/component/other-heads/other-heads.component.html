@@ -1,0 +1,93 @@
+<!-- <p>other-heads works!</p> -->
+<!-- <button mat-raised-button color="primary" (click)="closeElement()">Close</button> -->
+<div class="container">
+
+    <div style="margin-top: 10px;">
+
+      <mat-form-field style="margin-top: 20px;margin-left: 20px; width: 25%;">
+        <mat-label>Filter</mat-label>
+        <input matInput placeholder="Search" style="margin-left: 100px" (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+      <mat-label style="margin-left:300px; font-weight: 1000; font-size: 1.25em;color: blueviolet;">Salary Other Heads</mat-label>
+      <button mat-raised-button style="margin-left: 350px" color="primary" fill (click)="openOtherHeadsCreate()">Add Other Heads</button>
+      <button mat-raised-button style="margin-left: 6px" color="primary" (click)="closeElement()">Close</button>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          
+          <!-- _id -->
+          <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+          </ng-container>
+
+          <!-- Head -->
+          <ng-container matColumnDef="head">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Head </th>
+            <td mat-cell *matCellDef="let row"> {{row.head}} </td>
+          </ng-container>
+      
+          <!-- Payment Or Deduction -->
+          <ng-container matColumnDef="payOrRec">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pay / Deduct </th>
+            <td mat-cell *matCellDef="let row"> {{row.payOrRec}} </td>
+          </ng-container>
+      
+          <!-- Fix value or % on basic salary-->
+          <ng-container matColumnDef="fixAmtOrPercentage">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fix / % On Basic</th>
+            <td mat-cell *matCellDef="let row"> {{row.fixAmtOrPercentage}} </td>
+          </ng-container>
+      
+          <!-- Amoun -->
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+            <td mat-cell *matCellDef="let row"> {{row.value}} </td>
+          </ng-container>
+
+          <!-- Applicable from Date -->
+          <ng-container matColumnDef="applicableFromDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> From Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.applicableFromDate | date}} </td>
+          </ng-container>
+
+          <!-- Applicable till Date -->
+          <ng-container matColumnDef="applicableTillDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Till Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.applicableTillDate | date}} </td>
+          </ng-container>
+          
+          <!-- Next Value -->
+          <ng-container matColumnDef="nextVAlue">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Next Value </th>
+            <td mat-cell *matCellDef="let row"> {{row.nextVAlue}} </td>
+          </ng-container>
+
+           <!-- Action -->
+           <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let row"> 
+              <button mat-icon-button (click)="editOtherHeads(row)" color="primary">
+                  <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteOtherHeads(row._id)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+            
+    </div>
+
+  </div>

@@ -1,0 +1,66 @@
+<!-- <p>basic-salary-create works!</p> -->
+<h1 mat-dialog-title>{{header}}</h1> 
+
+<div mat-dialog-content>
+    <form [formGroup]="basicSalaryCreateForm">
+ 
+        <mat-form-field appearance="fill">
+            <mat-label>Employee</mat-label>
+             <mat-select formControlName="employeeId">
+                <mat-option *ngFor="let data of employeeData" [value]="data._id">
+                    {{data.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Basic Salary</mat-label>
+            <input formControlName="basicAmount" matInput placeholder="Enter amount">
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Approved By</mat-label>
+            <input formControlName="approvedBy" matInput placeholder="Approved By">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="dp1">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Applicable From</mat-label>
+            <input formControlName="applicableFromDate" matInput [matDatepicker]="dp2">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2></mat-datepicker>
+        </mat-form-field>
+               
+        <mat-form-field appearance="fill">
+            <mat-label>Till Date</mat-label>
+            <input formControlName="applicableTillDate" matInput [matDatepicker]="dp3">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Next Amount</mat-label>
+            <input formControlName="nextBasicAmount" matInput placeholder="Next Amount">
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>CV No.</mat-label>
+            <input formControlName="CVNo" matInput placeholder="CV No.">
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button style="margin-left: 6px" mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 6px" mat-raised-button color="primary" (click)="addBasicSalary()">{{actionBtn}}</button>
+</div>

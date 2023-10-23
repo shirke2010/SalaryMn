@@ -1,0 +1,102 @@
+
+<!-- <p>basic-salary works!</p> -->
+<!-- <button mat-raised-button color="primary" (click)="closeElement()">Close</button> -->
+
+<div class="container">
+
+    <div style="margin-top: 10px">
+
+      <mat-form-field style="margin-top: 20px;margin-left: 20px; width: 25%;">
+        <mat-label>Filter</mat-label>
+        <input matInput placeholder="Search" style="margin-left: 50px" (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+      <mat-label style="margin-left:300px; font-weight: 1000; font-size: 1.25em;color: blueviolet;">Employee Salary Master</mat-label>
+      <button mat-raised-button style="margin-left: 325px" color="primary" fill (click)="openBasicSalaryCreate()">Add Basic Salary</button>
+      <button mat-raised-button style="margin-left: 6px" color="primary" (click)="closeElement()">Close</button>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          
+          <!-- _id -->
+          <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+          </ng-container>
+
+          <!-- Name -->
+          <ng-container matColumnDef="employeeId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee </th>
+            <td mat-cell *matCellDef="let row"> {{row.ED.length > 0 ? row.ED[0].name: ''}} </td>
+          </ng-container>
+           
+          <!-- Salatry -->
+          <ng-container matColumnDef="basicAmount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary </th>
+            <td mat-cell *matCellDef="let row"> {{row.basicAmount}} </td>
+          </ng-container>
+      
+          <!-- Approved By -->
+          <ng-container matColumnDef="approvedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Approved By </th>
+            <td mat-cell *matCellDef="let row"> {{row.approvedBy}} </td>
+          </ng-container>
+
+          <!-- date -->
+            <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
+          </ng-container>
+      
+          <!-- Applicable From Date -->
+          <ng-container matColumnDef="applicableFromDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Applicable From </th>
+            <td mat-cell *matCellDef="let row"> {{row.applicableFromDate | date}} </td>
+          </ng-container>
+
+          <!-- Applicable till date -->
+          <ng-container matColumnDef="applicableTillDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Applicable Till </th>
+            <td mat-cell *matCellDef="let row"> {{row.applicableTillDate | date}} </td>
+          </ng-container>
+
+          <!-- Next amount will be -->
+          <ng-container matColumnDef="nextBasicAmount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Next Amount </th>
+            <td mat-cell *matCellDef="let row"> {{row.nextBasicAmount}} </td>
+          </ng-container>
+          
+          <!-- CV No. -->
+          <ng-container matColumnDef="CVNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CV No. </th>
+            <td mat-cell *matCellDef="let row"> {{row.CVNo}} </td>
+          </ng-container>
+
+           <!-- Action -->
+           <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let row"> 
+              <button mat-icon-button (click)="editBasicSalary(row)" color="primary">
+                  <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteBasicSalary(row._id)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+            
+    </div>
+
+  </div>
+
+

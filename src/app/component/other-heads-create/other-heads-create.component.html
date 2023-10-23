@@ -1,0 +1,60 @@
+<!-- <p>other-heads-create works!</p> -->
+<h1 mat-dialog-title>{{header}}</h1> 
+
+<div mat-dialog-content>
+    <form [formGroup]="otherHeadsCreateForm">
+ 
+        <mat-form-field appearance="fill">
+            <mat-label>Head</mat-label>
+            <input formControlName="head" matInput placeholder="Enter the head">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="payOrRec">
+                <mat-option value="Payment">Payment</mat-option>
+                <mat-option value="Deduction">Deduction</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Payment/Deduction</mat-label>
+            <mat-select formControlName="fixAmtOrPercentage">
+                <mat-option value="Fix">Fix Amount</mat-option>
+                <mat-option value="Percentage">% on BAsic</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input formControlName="value" matInput placeholder="Enter Amount">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Applicable From</mat-label>
+            <input formControlName="applicableFromDate" matInput [matDatepicker]="dp1">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+               
+        <mat-form-field appearance="fill">
+            <mat-label>Till Date</mat-label>
+            <input formControlName="applicableTillDate" matInput [matDatepicker]="dp2">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Next Amount</mat-label>
+            <input formControlName="nextVAlue" matInput placeholder="Next Amount">
+        </mat-form-field>
+        
+    </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button style="margin-left: 6px" mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 6px" mat-raised-button color="primary" (click)="addOtherHeads()">{{actionBtn}}</button>
+</div>

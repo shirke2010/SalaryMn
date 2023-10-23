@@ -1,0 +1,91 @@
+<h1 mat-dialog-title id = "myHeader" style="text-align-last: center;">{{header}}</h1>
+
+<div mat-dialog-content>
+
+    <form [formGroup]="employeeForm"  style="height: 80%;">
+        
+        <mat-form-field appearance="fill" class="example-container">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput placeholder="Enter the name">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="example-container">
+            <mat-label>Enter your email</mat-label>
+            <input formControlName="email" matInput placeholder="abc@example.com" required>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill" class="example-container">
+            <mat-label>Date of Joining</mat-label>
+            <input formControlName="dateOfJoining" matInput [matDatepicker]="dp1">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="example-container">
+            <mat-label>Designation</mat-label>
+            <mat-select formControlName="designation">
+                <mat-option value="Trainee">Trainee</mat-option>
+                <mat-option value="Developer">Developer</mat-option>
+                <mat-option value="Project Manager">Project Manager</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="example-container">
+            <mat-label>Date of Birth</mat-label>
+            <input formControlName="DOB" matInput [matDatepicker]="dp2">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width" class="example-container">
+            <mat-label>Address</mat-label>
+            <input formControlName="address" matInput placeholder="Enter the Address" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" class="example-container">
+            <mat-label>City</mat-label>
+            <!-- <input formControlName="city" matInput placeholder="Enter the City" required> -->
+            <mat-select formControlName="city">
+                <mat-option *ngFor="let data of cities" [value]="data">
+                    {{data}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" class="example-container">
+            <mat-label>State</mat-label>
+            <!-- <input formControlName="state" matInput placeholder="Enter the State" required> -->
+            <mat-select formControlName="state">
+                <mat-option *ngFor="let data of states" [value]="data">
+                    {{data}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" class="example-container">
+            <mat-label>Pin Code</mat-label>
+            <input formControlName="pinCode" matInput placeholder="Enter the Pin code">
+        </mat-form-field>
+       
+        <mat-form-field class="example-full-width" class="example-container">
+            <mat-label>Cell No.</mat-label>
+            <span matPrefix>+1 &nbsp;</span>
+            <input formControlName="contactNumber" type="tel" matInput placeholder="000-000-0000">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width" class="example-container">
+            <mat-label>Employee Code</mat-label>
+            <input formControlName="employeeCode" matInput placeholder="Enter the code" required>
+        </mat-form-field>
+
+    </form>
+
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button style="margin-left: 6px" mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 6px" mat-raised-button color="primary" (click)="addEmployee()">{{actionBtn}}</button>
+</div>
